@@ -8,7 +8,7 @@ module Astaire
       # A lambda is needed here to ensure that the constant is reloaded
       # after each request (in development mode)
       astaire_app = proc { |env| ApplicationController.call(env) }
-      app.middleware.use ActionDispatch::Cascade, lambda { astaire_app }
+      app.middleware.use Astaire::Cascade, astaire_app
     end
 
     # Controllers must be preloaded in order for Astaire's routing
