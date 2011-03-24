@@ -5,8 +5,6 @@ module Astaire
     end
 
     initializer "astaire.cascade_routing" do |app|
-      # A lambda is needed here to ensure that the constant is reloaded
-      # after each request (in development mode)
       astaire_app = proc { |env| ApplicationController.call(env) }
       app.middleware.use Astaire::Cascade, astaire_app
     end
