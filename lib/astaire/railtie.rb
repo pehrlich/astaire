@@ -13,7 +13,7 @@ module Astaire
     # to be hooked up
     initializer "astaire.preload_controllers" do |app|
       config.to_prepare do
-        app.config.paths.app.controllers.each do |load_path|
+        app.config.paths["app/controllers"].each do |load_path|
           matcher = /\A#{Regexp.escape(load_path)}\/(.*)\.rb\Z/
           Dir["#{load_path}/**/*_controller.rb"].each do |file|
             require_dependency file.sub(matcher, '\1')
